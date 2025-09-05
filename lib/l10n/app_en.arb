@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2025-09-03T16:39:48+09:00",
+  
+  "appTitle": "Flutter_boilerplate",
+  "@appTitle": {
+    "description": "Main app title"
+  },
+  
+  "appDescription": "Flutter_boilerplate to build apps!",
+  "@appDescription": {
+    "description": "App description"
+  }
+}

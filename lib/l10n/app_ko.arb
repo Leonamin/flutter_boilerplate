@@ -1,0 +1,14 @@
+{
+  "@@locale": "ko",
+  "@@last_modified": "2025-09-03T16:39:48+09:00",
+  
+  "appTitle": "Flutter_boilerplate",
+  "@appTitle": {
+    "description": "앱의 메인 타이틀"
+  },
+  
+  "appDescription": "Flutter_boilerplate를 사용하여 앱을 구축해보세요!",
+  "@appDescription": {
+    "description": "앱 소개 문구"
+  }
+}
