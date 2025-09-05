@@ -5,7 +5,7 @@ import 'package:flutter_boilerplate/core/di/dependency_injection.dart';
 import 'package:flutter_boilerplate/core/routes/app_router.dart';
 import 'package:flutter_boilerplate/core/theme/app_theme_extension.dart';
 import 'package:flutter_boilerplate/core/utils/logger.dart';
-
+import 'package:go_router/go_router.dart';
 
 void main() async {
   runZonedGuarded(
@@ -14,7 +14,9 @@ void main() async {
       // 의존성 주입 초기화
       await DependencyInjection.init();
 
-      runApp(const MyApp());
+      final appRouter = initAppRouter();
+
+      runApp(MyApp(routerConfig: appRouter));
     },
     (error, stack) {
       Logger.error('Error: $error', tag: 'main');
@@ -23,7 +25,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final GoRouter routerConfig;
+
+  const MyApp({super.key, required this.routerConfig});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         extensions: [AppThemeExtension.dark],
       ),
-      routerConfig: initAppRouter(),
+      routerConfig: routerConfig,
     );
   }
 }
