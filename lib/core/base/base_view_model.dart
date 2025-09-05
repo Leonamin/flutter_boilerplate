@@ -8,6 +8,10 @@ import 'package:flutter_boilerplate/core/utils/logger.dart';
 /// GetX의 FullLifeCycleController를 상속받아 생명주기 관리
 abstract class BaseViewModel extends FullLifeCycleController
     with FullLifeCycleMixin {
+  final BuildContext context;
+
+  BaseViewModel(this.context);
+
   /// 진행 상태 관리
   final RxBool isOnProgress = false.obs;
 

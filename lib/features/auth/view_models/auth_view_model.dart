@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_boilerplate/core/base/base_view_model.dart';
-import 'package:flutter_boilerplate/core/di/service_locator.dart';
 import 'package:flutter_boilerplate/domain/services/auth/auth_service.dart';
 
 /// 인증 관련 ViewModel
 class AuthViewModel extends BaseViewModel {
-  late final AuthService _authService;
+  final AuthService _authService;
+
+  AuthViewModel(super.context, this._authService);
 
   // 폼 컨트롤러들
   final emailController = TextEditingController();
@@ -23,7 +24,6 @@ class AuthViewModel extends BaseViewModel {
   @override
   void onInit() {
     super.onInit();
-    _authService = service<AuthService>();
   }
 
   @override

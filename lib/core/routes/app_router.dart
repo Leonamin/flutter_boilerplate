@@ -64,7 +64,7 @@ GoRoute _buildAuthRoute() {
     name: AppRouteType.auth.name,
     builder: (context, state) {
       return GetBuilder<AuthViewModel>(
-        init: AuthViewModel(),
+        init: AuthViewModel(context, service<AuthService>()),
         builder: (controller) {
           return const AuthView();
         },
