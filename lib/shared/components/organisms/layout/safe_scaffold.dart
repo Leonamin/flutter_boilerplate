@@ -11,7 +11,9 @@ class SafeScaffold extends StatelessWidget {
   final bool enableBottomSafeArea;
   final Widget? bottomNavigationBar;
   final bool resizeToAvoidBottomInset;
-  
+
+  final VoidCallback? onTap;
+
   const SafeScaffold({
     super.key,
     this.appBar,
@@ -23,23 +25,24 @@ class SafeScaffold extends StatelessWidget {
     required this.child,
     this.bottomNavigationBar,
     this.resizeToAvoidBottomInset = true,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:
-          appBar ??
-          EmptyAppBar(
-            backgroundColor:
-                statusBarColor ?? backgroundColor,
-          ),
-      floatingActionButton: floatingActionButton,
-      floatingActionButtonLocation: floatingActionButtonLocation,
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      backgroundColor: backgroundColor,
-      body: SafeArea(bottom: enableBottomSafeArea, child: child),
-      bottomNavigationBar: bottomNavigationBar,
+    return GestureDetector(
+      onTap: onTap ?? () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar:
+            appBar ??
+            EmptyAppBar(backgroundColor: statusBarColor ?? backgroundColor),
+        floatingActionButton: floatingActionButton,
+        floatingActionButtonLocation: floatingActionButtonLocation,
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        backgroundColor: backgroundColor,
+        body: SafeArea(bottom: enableBottomSafeArea, child: child),
+        bottomNavigationBar: bottomNavigationBar,
+      ),
     );
   }
 }
