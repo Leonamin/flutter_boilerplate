@@ -32,7 +32,7 @@ class SafeScaffold extends StatelessWidget {
           appBar ??
           EmptyAppBar(
             backgroundColor:
-                statusBarColor ?? Theme.of(context).scaffoldBackgroundColor,
+                statusBarColor ?? backgroundColor,
           ),
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,

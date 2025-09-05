@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class EmptyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Color backgroundColor;
-  
-  const EmptyAppBar({super.key, required this.backgroundColor});
+  final Color? backgroundColor;
+
+  const EmptyAppBar({super.key, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
