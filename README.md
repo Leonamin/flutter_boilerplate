@@ -4,6 +4,119 @@
 
 이 프로젝트는 Flutter 앱 개발을 위한 완성도 높은 MVVM 아키텍처 보일러플레이트입니다.
 
+### 1. 프로젝트 생성
+
+```bash
+./create_project.sh <패키지명> <목적지_경로> [앱_이름]
+```
+
+### 2. 인자 설명
+
+- **패키지명** (필수): Flutter 프로젝트의 패키지명
+
+  - 소문자로 시작
+  - 소문자, 숫자, 언더스코어(\_)만 사용 가능
+  - Dart 예약어 사용 불가
+  - 예: `my_awesome_app`, `todo_list`, `shopping_cart`
+
+- **목적지\_경로** (필수): 프로젝트를 복사할 경로
+
+  - 절대경로 또는 상대경로 모두 가능
+  - 예: `~/projects/my_app`, `./my_app`, `/Users/username/dev/my_app`
+
+- **앱\_이름** (선택): 앱의 표시 이름
+  - 생략 시 패키지명에서 자동 생성 (snake_case → PascalCase)
+  - 예: `my_awesome_app` → `MyAwesomeApp`
+
+### 3. 사용 예시
+
+#### 기본 사용 (앱 이름 자동 생성)
+
+```bash
+./create_project.sh my_awesome_app ~/projects/my_app
+```
+
+결과:
+
+- 패키지명: `my_awesome_app`
+- 앱 이름: `MyAwesomeApp` (자동 생성)
+- 패키지 ID: `com.example.my_awesome_app`
+
+#### 앱 이름 직접 지정
+
+```bash
+./create_project.sh todo_app ./todo_app "할일 관리"
+```
+
+결과:
+
+- 패키지명: `todo_app`
+- 앱 이름: `할일 관리`
+- 패키지 ID: `com.example.todo_app`
+
+#### 절대경로 사용
+
+```bash
+./create_project.sh shopping_cart /Users/username/dev/shopping_cart
+```
+
+### 4. 생성 후 다음 단계
+
+프로젝트 생성이 완료되면:
+
+```bash
+# 1. 프로젝트 디렉토리로 이동
+cd <목적지_경로>
+
+# 2. 의존성 설치
+flutter pub get
+
+# 3. 프로젝트 실행
+flutter run
+```
+
+### 5. 주의사항
+
+- 목적지 경로가 이미 존재하면 에러가 발생합니다
+- 패키지명은 Dart 명명 규칙을 따라야 합니다
+- 스크립트 실행 전 Flutter SDK가 설치되어 있어야 합니다
+- macOS, zsh 환경에서 테스트되었습니다
+
+### 6. 제외되는 파일/디렉토리
+
+다음 파일과 디렉토리는 복사되지 않습니다:
+
+- `.git`
+- `.dart_tool`
+- `build`
+- `.flutter-plugins`
+- `.flutter-plugins-dependencies`
+- `.packages`
+- `pubspec.lock`
+- `.vscode`
+- `.idea`
+- `*.iml`
+- `create_project.sh` (스크립트 자체)
+
+### 7. 문제 해결
+
+#### "permission denied" 에러
+
+```bash
+chmod +x create_project.sh
+```
+
+#### 패키지명 유효성 에러
+
+- 소문자로 시작하는지 확인
+- 특수문자 대신 언더스코어(\_) 사용
+- Dart 예약어가 아닌지 확인
+
+#### 목적지 경로 에러
+
+- 부모 디렉토리가 존재하는지 확인
+- 쓰기 권한이 있는지 확인
+
 ## 🏗️ 아키텍처
 
 ### 핵심 기술 스택
@@ -66,29 +179,9 @@ lib/
 - **커스텀 색상**: 프로젝트별 색상 팔레트
 - **타이포그래피**: 일관된 텍스트 스타일
 
-## 🚀 새 프로젝트 시작하기
+## 🚀 커스터마이징
 
-### 1. 프로젝트 설정
-
-```bash
-# 1. 보일러플레이트 클론
-git clone <boilerplate-repo> my-new-project
-cd my-new-project
-
-# 2. 패키지명 변경
-find . -name "*.dart" -exec sed -i '' 's/flutter_boilerplate/my_new_project/g' {} \;
-
-# 3. pubspec.yaml 수정
-# name: my_new_project
-# description: "My New Flutter Project"
-
-# 4. 의존성 설치
-flutter pub get
-```
-
-### 2. 기본 사용법
-
-#### ViewModel 생성
+### ViewModel 생성
 
 ```dart
 class HomeViewModel extends BaseViewModel {
@@ -111,7 +204,7 @@ class HomeViewModel extends BaseViewModel {
 }
 ```
 
-#### View 생성
+### View 생성
 
 ```dart
 class HomeView extends GetView<HomeViewModel> {
@@ -134,7 +227,7 @@ class HomeView extends GetView<HomeViewModel> {
 }
 ```
 
-#### 라우트 추가
+### 라우트 추가
 
 ```dart
 // 1. AppRouteType에 추가
@@ -207,16 +300,14 @@ context.textStyles.header1
 context.textStyles.body
 ```
 
-## 🔄 커스터마이징
-
-### 1. 색상 변경
+### 5. 색상 변경
 
 `lib/core/theme/seoulution_theme_extension.dart`에서 색상 팔레트 수정
 
-### 2. 컴포넌트 추가
+### 6. 컴포넌트 추가
 
-`lib/shared/components/atoms/`에 새 컴포넌트 추가
+`lib/shared/components/`에 새 컴포넌트 추가
 
-### 3. 서비스 추가
+### 7. 서비스 추가
 
 `lib/domain/services/`에 새 서비스 추가 후 DI에 등록
