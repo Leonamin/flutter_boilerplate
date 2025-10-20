@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Flutter Boilerplate 프로젝트 생성 스크립트
-# 사용법: ./create_project.sh <패키지명> <목적지_경로> [앱_이름]
+# 사용법: ./create_project.sh <패키지_ID> <목적지_경로> [앱_이름]
 
 set -e
 
@@ -33,23 +33,35 @@ warning() {
     echo "${YELLOW}⚠️  $1${NC}"
 }
 
-# 함수: 패키지명 유효성 검사
-validate_package_name() {
-    local package_name=$1
+# 함수: 패키지 ID 유효성 검사
+validate_package_id() {
+    local package_id=$1
     
-    # 패키지명은 소문자, 숫자, 언더스코어만 허용
-    if [[ ! $package_name =~ ^[a-z][a-z0-9_]*$ ]]; then
-        error "패키지명은 소문자로 시작하고 소문자, 숫자, 언더스코어만 사용할 수 있습니다."
+    # 패키지 ID는 도메인 형식 (예: com.example.app, kr.zestcorp.app)
+    if [[ ! $package_id =~ ^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$ ]]; then
+        error "패키지 ID는 도메인 형식이어야 합니다 (예: com.example.app, kr.company.myapp)"
     fi
     
-    # Dart 예약어 체크
+    # 각 세그먼트가 Dart 예약어가 아닌지 체크
     local reserved_words=("abstract" "as" "assert" "async" "await" "break" "case" "catch" "class" "const" "continue" "covariant" "default" "deferred" "do" "dynamic" "else" "enum" "export" "extends" "extension" "external" "factory" "false" "final" "finally" "for" "Function" "get" "hide" "if" "implements" "import" "in" "interface" "is" "late" "library" "mixin" "new" "null" "on" "operator" "part" "required" "rethrow" "return" "set" "show" "static" "super" "switch" "sync" "this" "throw" "true" "try" "typedef" "var" "void" "while" "with" "yield")
     
-    for word in "${reserved_words[@]}"; do
-        if [[ $package_name == $word ]]; then
-            error "패키지명으로 Dart 예약어를 사용할 수 없습니다: $word"
-        fi
+    # zsh에서 문자열을 배열로 분할
+    local -a SEGMENTS
+    SEGMENTS=("${(@s/./)package_id}")
+    
+    for segment in "${SEGMENTS[@]}"; do
+        for word in "${reserved_words[@]}"; do
+            if [[ $segment == $word ]]; then
+                error "패키지 ID의 세그먼트로 Dart 예약어를 사용할 수 없습니다: $word"
+            fi
+        done
     done
+}
+
+# 함수: 패키지 ID에서 패키지명 추출 (마지막 세그먼트)
+extract_package_name() {
+    local package_id=$1
+    echo "$package_id" | awk -F'.' '{print $NF}'
 }
 
 # 함수: 앱 이름 생성 (snake_case -> PascalCase)
@@ -66,22 +78,24 @@ generate_package_path() {
 
 # 인자 확인
 if [[ $# -lt 2 ]]; then
-    echo "사용법: $0 <패키지명> <목적지_경로> [앱_이름]"
+    echo "사용법: $0 <패키지_ID> <목적지_경로> [앱_이름]"
     echo ""
     echo "예시:"
-    echo "  $0 my_awesome_app ~/projects/my_app"
-    echo "  $0 my_awesome_app ./my_app MyAwesomeApp"
+    echo "  $0 com.example.myapp ~/projects/my_app"
+    echo "  $0 kr.zestcorp.seoulution ./my_app MyApp"
+    echo "  $0 io.github.username.app /Users/dev/app"
     echo ""
     echo "인자:"
-    echo "  패키지명       - Flutter 프로젝트 패키지명 (예: my_awesome_app)"
+    echo "  패키지_ID      - Flutter 프로젝트 패키지 ID (예: com.example.app, kr.company.myapp)"
     echo "  목적지_경로    - 프로젝트를 복사할 경로 (절대경로 또는 상대경로)"
-    echo "  앱_이름        - (선택) 앱 표시 이름 (예: MyAwesomeApp). 생략시 패키지명에서 자동 생성"
+    echo "  앱_이름        - (선택) 앱 표시 이름 (예: MyApp). 생략시 패키지 ID에서 자동 생성"
     exit 1
 fi
 
 # 변수 설정
-NEW_PACKAGE_NAME=$1
+NEW_PACKAGE_ID=$1
 DEST_PATH=$2
+NEW_PACKAGE_NAME=$(extract_package_name "$NEW_PACKAGE_ID")
 NEW_APP_NAME=${3:-$(generate_app_name "$NEW_PACKAGE_NAME")}
 
 # 현재 스크립트의 디렉토리 (보일러플레이트 위치)
@@ -92,22 +106,21 @@ OLD_PACKAGE_NAME="flutter_boilerplate"
 OLD_APP_NAME="Flutter_boilerplate"
 OLD_PACKAGE_ID="com.example.flutter_boilerplate"
 
-# 새 패키지 ID 생성
-NEW_PACKAGE_ID="com.example.${NEW_PACKAGE_NAME}"
+# 새 패키지 경로 생성
 NEW_PACKAGE_PATH=$(generate_package_path "$NEW_PACKAGE_ID")
 OLD_PACKAGE_PATH=$(generate_package_path "$OLD_PACKAGE_ID")
 
 info "Flutter 보일러플레이트 프로젝트 생성 시작..."
 echo ""
 echo "설정 정보:"
+echo "  - 패키지 ID: ${BLUE}${NEW_PACKAGE_ID}${NC}"
 echo "  - 패키지명: ${BLUE}${NEW_PACKAGE_NAME}${NC}"
 echo "  - 앱 이름: ${BLUE}${NEW_APP_NAME}${NC}"
-echo "  - 패키지 ID: ${BLUE}${NEW_PACKAGE_ID}${NC}"
 echo "  - 목적지: ${BLUE}${DEST_PATH}${NC}"
 echo ""
 
-# 패키지명 유효성 검사
-validate_package_name "$NEW_PACKAGE_NAME"
+# 패키지 ID 유효성 검사
+validate_package_id "$NEW_PACKAGE_ID"
 
 # 목적지 경로를 절대경로로 변환
 if [[ "$DEST_PATH" = /* ]]; then

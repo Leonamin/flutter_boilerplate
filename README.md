@@ -7,17 +7,18 @@
 ### 1. 프로젝트 생성
 
 ```bash
-./create_project.sh <패키지명> <목적지_경로> [앱_이름]
+./create_project.sh <패키지_ID> <목적지_경로> [앱_이름]
 ```
 
 ### 2. 인자 설명
 
-- **패키지명** (필수): Flutter 프로젝트의 패키지명
+- **패키지\_ID** (필수): Flutter 프로젝트의 패키지 ID (도메인 형식)
 
-  - 소문자로 시작
+  - 도메인 역순 형식 사용 (예: `com.example.app`, `kr.company.myapp`)
+  - 각 세그먼트는 소문자로 시작
   - 소문자, 숫자, 언더스코어(\_)만 사용 가능
   - Dart 예약어 사용 불가
-  - 예: `my_awesome_app`, `todo_list`, `shopping_cart`
+  - 예: `com.example.myapp`, `kr.zestcorp.seoulution`, `io.github.username.app`
 
 - **목적지\_경로** (필수): 프로젝트를 복사할 경로
 
@@ -25,39 +26,39 @@
   - 예: `~/projects/my_app`, `./my_app`, `/Users/username/dev/my_app`
 
 - **앱\_이름** (선택): 앱의 표시 이름
-  - 생략 시 패키지명에서 자동 생성 (snake_case → PascalCase)
-  - 예: `my_awesome_app` → `MyAwesomeApp`
+  - 생략 시 패키지 ID의 마지막 세그먼트에서 자동 생성 (snake_case → PascalCase)
+  - 예: `kr.zestcorp.my_app` → `MyApp`
 
 ### 3. 사용 예시
 
 #### 기본 사용 (앱 이름 자동 생성)
 
 ```bash
-./create_project.sh my_awesome_app ~/projects/my_app
+./create_project.sh com.example.myapp ~/projects/my_app
 ```
 
 결과:
 
-- 패키지명: `my_awesome_app`
-- 앱 이름: `MyAwesomeApp` (자동 생성)
-- 패키지 ID: `com.example.my_awesome_app`
+- 패키지 ID: `com.example.myapp`
+- 패키지명: `myapp`
+- 앱 이름: `Myapp` (자동 생성)
 
 #### 앱 이름 직접 지정
 
 ```bash
-./create_project.sh todo_app ./todo_app "할일 관리"
+./create_project.sh kr.zestcorp.seoulution ./seoulution "Seoulution"
 ```
 
 결과:
 
-- 패키지명: `todo_app`
-- 앱 이름: `할일 관리`
-- 패키지 ID: `com.example.todo_app`
+- 패키지 ID: `kr.zestcorp.seoulution`
+- 패키지명: `seoulution`
+- 앱 이름: `Seoulution`
 
 #### 절대경로 사용
 
 ```bash
-./create_project.sh shopping_cart /Users/username/dev/shopping_cart
+./create_project.sh io.github.username.shopping_cart /Users/username/dev/shopping_cart
 ```
 
 ### 4. 생성 후 다음 단계
@@ -78,7 +79,8 @@ flutter run
 ### 5. 주의사항
 
 - 목적지 경로가 이미 존재하면 에러가 발생합니다
-- 패키지명은 Dart 명명 규칙을 따라야 합니다
+- 패키지 ID는 도메인 역순 형식을 따라야 합니다 (예: `com.company.app`)
+- 각 세그먼트는 Dart 명명 규칙을 따라야 합니다
 - 스크립트 실행 전 Flutter SDK가 설치되어 있어야 합니다
 - macOS, zsh 환경에서 테스트되었습니다
 
@@ -106,9 +108,10 @@ flutter run
 chmod +x create_project.sh
 ```
 
-#### 패키지명 유효성 에러
+#### 패키지 ID 유효성 에러
 
-- 소문자로 시작하는지 확인
+- 도메인 역순 형식인지 확인 (예: `com.example.app`)
+- 각 세그먼트가 소문자로 시작하는지 확인
 - 특수문자 대신 언더스코어(\_) 사용
 - Dart 예약어가 아닌지 확인
 
