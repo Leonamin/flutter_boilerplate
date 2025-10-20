@@ -99,7 +99,6 @@ class AppButton extends StatelessWidget {
   /// 전체 너비 사용 여부
   final bool fullWidth;
 
-
   @override
   Widget build(BuildContext context) {
     // 변형별 색상 설정
@@ -209,4 +208,3 @@ class _ButtonColors {
   final Color? borderColor;
   final Color? pressedBackgroundColor;
 }
-

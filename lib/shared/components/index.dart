@@ -10,7 +10,6 @@ library;
 
 // Atoms - Buttons
 export 'atoms/buttons/default_button.dart';
-export 'atoms/buttons/throttled_button.dart';
 export 'atoms/buttons/debounced_button.dart';
 export 'atoms/buttons/button_variant.dart';
 export 'atoms/buttons/button_color.dart';

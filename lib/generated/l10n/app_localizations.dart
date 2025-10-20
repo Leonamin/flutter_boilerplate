@@ -129,6 +129,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Need help?'**
   String get commonErrorPageHelp;
+
+  /// 이미지 로딩 실패 메시지입니다.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load image'**
+  String get imageGalleryLoadFailed;
 }
 
 class _AppLocalizationsDelegate

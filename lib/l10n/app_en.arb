@@ -20,5 +20,9 @@
   "commonErrorPageHelp": "Need help?",
   "@commonErrorPageHelp": {
     "description": "에러 페이지에서 도움이 필요할 때 표시되는 텍스트입니다"
+  },
+  "imageGalleryLoadFailed": "Failed to load image",
+  "@imageGalleryLoadFailed": {
+    "description": "이미지 로딩 실패 메시지입니다."
   }
 }

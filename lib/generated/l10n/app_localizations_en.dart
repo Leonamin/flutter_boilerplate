@@ -23,4 +23,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonErrorPageHelp => 'Need help?';
+
+  @override
+  String get imageGalleryLoadFailed => 'Failed to load image';
 }
