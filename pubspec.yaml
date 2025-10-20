@@ -21,6 +21,7 @@ dependencies:
   
   # Toast
   fluttertoast: ^8.2.8
+  supabase_flutter: ^2.10.3
 
 dev_dependencies:
   flutter_test:
