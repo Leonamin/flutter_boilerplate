@@ -9,8 +9,18 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Flutter_boilerplate';
+  String get commonButtonGoHome => 'Go Home';
 
   @override
-  String get appDescription => 'Flutter_boilerplate to build apps!';
+  String get commonButtonGoBack => 'Go Back';
+
+  @override
+  String get commonErrorPageNotFound => 'Page Not Found';
+
+  @override
+  String get commonErrorPageDescription =>
+      'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.';
+
+  @override
+  String get commonErrorPageHelp => 'Need help?';
 }

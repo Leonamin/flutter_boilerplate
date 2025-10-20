@@ -1,14 +1,24 @@
 {
   "@@locale": "en",
   "@@last_modified": "2025-09-03T16:39:48+09:00",
-  
-  "appTitle": "Flutter_boilerplate",
-  "@appTitle": {
-    "description": "Main app title"
+  "commonButtonGoHome": "Go Home",
+  "@commonButtonGoHome": {
+    "description": "홈으로 이동하는 버튼의 텍스트입니다"
   },
-  
-  "appDescription": "Flutter_boilerplate to build apps!",
-  "@appDescription": {
-    "description": "App description"
+  "commonButtonGoBack": "Go Back",
+  "@commonButtonGoBack": {
+    "description": "이전 페이지로 이동하는 버튼의 텍스트입니다"
+  },
+  "commonErrorPageNotFound": "Page Not Found",
+  "@commonErrorPageNotFound": {
+    "description": "해당 경로에 페이지가 존재하지 않을 경우 표시되는 타이틀 텍스트입니다"
+  },
+  "commonErrorPageDescription": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+  "@commonErrorPageDescription": {
+    "description": "해당 경로에 페이지가 존재하지 않을 경우 표시되는 설명 텍스트입니다"
+  },
+  "commonErrorPageHelp": "Need help?",
+  "@commonErrorPageHelp": {
+    "description": "에러 페이지에서 도움이 필요할 때 표시되는 텍스트입니다"
   }
 }

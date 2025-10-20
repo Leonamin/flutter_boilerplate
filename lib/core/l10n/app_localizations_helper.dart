@@ -13,8 +13,4 @@ class AppLocalizationsHelper {
 /// 사용법: context.l10n.appTitle
 extension LocalizationExtension on BuildContext {
   AppLocalizations get l10n => AppLocalizations.of(this);
-  
-  // 자주 사용되는 텍스트들에 대한 편의 메서드
-  String get appTitle => l10n.appTitle;
-  String get appDescription => l10n.appDescription;
 }

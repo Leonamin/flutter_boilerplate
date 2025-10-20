@@ -9,8 +9,18 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => 'Flutter_boilerplate';
+  String get commonButtonGoHome => 'Go Home';
 
   @override
-  String get appDescription => 'Flutter_boilerplate를 사용하여 앱을 구축해보세요!';
+  String get commonButtonGoBack => 'Go Back';
+
+  @override
+  String get commonErrorPageNotFound => 'Page Not Found';
+
+  @override
+  String get commonErrorPageDescription =>
+      'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.';
+
+  @override
+  String get commonErrorPageHelp => 'Need help?';
 }

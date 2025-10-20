@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/shared/components/organisms/page/error_page.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_boilerplate/core/routes/app_route_type.dart';
@@ -10,11 +11,6 @@ import 'package:flutter_boilerplate/features/auth/view_models/auth_view_model.da
 
 // Views
 import 'package:flutter_boilerplate/features/auth/views/auth_view.dart';
-import 'package:flutter_boilerplate/shared/components/atoms/dialogs/dialog_usage_examples.dart';
-import 'package:flutter_boilerplate/shared/components/atoms/bottom_sheets/bottom_sheet_usage_examples.dart';
-import 'package:flutter_boilerplate/shared/components/atoms/toast/toast_usage_examples.dart';
-import 'package:flutter_boilerplate/shared/components/atoms/buttons/usage_examples.dart';
-import 'package:flutter_boilerplate/shared/components/atoms/dropdowns/dropdown_usage_examples.dart';
 
 /// 앱의 라우터를 초기화하고 설정합니다
 ///
@@ -44,9 +40,6 @@ GoRouter initAppRouter() {
 
       // ==================== 설정 관련 라우트 ====================
       // TODO: 설정 관련 라우트들 구현
-
-      // ==================== 예시 및 개발용 라우트 ====================
-      ..._buildExampleRoutes(),
     ],
   );
 
@@ -70,124 +63,6 @@ GoRoute _buildAuthRoute() {
         },
       );
     },
-  );
-}
-
-/// 예시 페이지 라우트들을 생성합니다
-List<GoRoute> _buildExampleRoutes() {
-  return [
-    // 토스트 예시
-    GoRoute(
-      path: AppRouteType.toastExamples.path,
-      name: AppRouteType.toastExamples.name,
-      builder: (context, state) => const ToastUsageExamples(),
-    ),
-
-    // 버튼 예시
-    GoRoute(
-      path: AppRouteType.buttonExamples.path,
-      name: AppRouteType.buttonExamples.name,
-      builder: (context, state) => const ButtonUsageExamples(),
-    ),
-
-    // 드롭다운 예시
-    GoRoute(
-      path: AppRouteType.dropdownExamples.path,
-      name: AppRouteType.dropdownExamples.name,
-      builder: (context, state) => const DropdownUsageExamples(),
-    ),
-
-    // 다이얼로그 예시
-    GoRoute(
-      path: AppRouteType.dialogExamples.path,
-      name: AppRouteType.dialogExamples.name,
-      builder: (context, state) => const DialogUsageExamples(),
-    ),
-
-    // 바텀시트 예시
-    GoRoute(
-      path: AppRouteType.bottomSheetExamples.path,
-      name: AppRouteType.bottomSheetExamples.name,
-      builder: (context, state) => const BottomSheetUsageExamples(),
-    ),
-
-    // 예시 메인 페이지
-    GoRoute(
-      path: AppRouteType.examples.path,
-      name: AppRouteType.examples.name,
-      builder: (context, state) => _buildExamplesMainPage(context),
-    ),
-  ];
-}
-
-/// 예시 메인 페이지를 생성합니다
-Widget _buildExamplesMainPage(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text('컴포넌트 예시'),
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
-      elevation: 1,
-    ),
-    body: ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        _buildExampleTile(
-          context,
-          title: '토스트 예시',
-          subtitle: '다양한 토스트 메시지 예시',
-          onTap: () => context.goNamed(AppRouteType.toastExamples.name),
-        ),
-        _buildExampleTile(
-          context,
-          title: '버튼 예시',
-          subtitle: '다양한 버튼 컴포넌트 예시',
-          onTap: () => context.goNamed(AppRouteType.buttonExamples.name),
-        ),
-        _buildExampleTile(
-          context,
-          title: '드롭다운 예시',
-          subtitle: '드롭다운 컴포넌트 예시',
-          onTap: () => context.goNamed(AppRouteType.dropdownExamples.name),
-        ),
-        _buildExampleTile(
-          context,
-          title: '다이얼로그 예시',
-          subtitle: '다양한 다이얼로그 컴포넌트 예시',
-          onTap: () => context.goNamed(AppRouteType.dialogExamples.name),
-        ),
-        _buildExampleTile(
-          context,
-          title: '바텀시트 예시',
-          subtitle: '다양한 바텀시트 컴포넌트 예시',
-          onTap: () => context.goNamed(AppRouteType.bottomSheetExamples.name),
-        ),
-        _buildExampleTile(
-          context,
-          title: '인증 화면',
-          subtitle: '로그인/회원가입 화면 예시',
-          onTap: () => context.goNamed(AppRouteType.auth.name),
-        ),
-      ],
-    ),
-  );
-}
-
-/// 예시 타일을 생성합니다
-Widget _buildExampleTile(
-  BuildContext context, {
-  required String title,
-  required String subtitle,
-  required VoidCallback onTap,
-}) {
-  return Card(
-    margin: const EdgeInsets.only(bottom: 8),
-    child: ListTile(
-      title: Text(title),
-      subtitle: Text(subtitle),
-      trailing: const Icon(Icons.arrow_forward_ios),
-      onTap: onTap,
-    ),
   );
 }
 
@@ -258,50 +133,6 @@ bool _checkAuthenticationStatus() {
 
 /// 에러 페이지를 생성합니다
 Widget _buildErrorPage(BuildContext context, GoRouterState state) {
-  Logger.error(
-    'Route error - Path: ${state.uri.path}',
-    tag: 'AppRouter',
-  );
-
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text('오류'),
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
-      elevation: 1,
-    ),
-    body: Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.error_outline, size: 64, color: Colors.red),
-            const SizedBox(height: 16),
-            Text(
-              '페이지를 찾을 수 없습니다',
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              '요청한 경로: ${state.uri.path}',
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () => context.go(AppRouteType.toastExamples.path),
-              child: const Text('예시 페이지로 돌아가기'),
-            ),
-            const SizedBox(height: 8),
-            TextButton(
-              onPressed: () => context.go(AppRouteType.examples.path),
-              child: const Text('예시 메인으로 이동'),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
+  Logger.error('Route error - Path: ${state.uri.path}', tag: 'AppRouter');
+  return ErrorPage(state: state);
 }

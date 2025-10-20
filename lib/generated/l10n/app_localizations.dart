@@ -100,17 +100,35 @@ abstract class AppLocalizations {
     Locale('ko'),
   ];
 
-  /// Main app title
+  /// 홈으로 이동하는 버튼의 텍스트입니다
   ///
   /// In en, this message translates to:
-  /// **'Flutter_boilerplate'**
-  String get appTitle;
+  /// **'Go Home'**
+  String get commonButtonGoHome;
 
-  /// App description
+  /// 이전 페이지로 이동하는 버튼의 텍스트입니다
   ///
   /// In en, this message translates to:
-  /// **'Flutter_boilerplate to build apps!'**
-  String get appDescription;
+  /// **'Go Back'**
+  String get commonButtonGoBack;
+
+  /// 해당 경로에 페이지가 존재하지 않을 경우 표시되는 타이틀 텍스트입니다
+  ///
+  /// In en, this message translates to:
+  /// **'Page Not Found'**
+  String get commonErrorPageNotFound;
+
+  /// 해당 경로에 페이지가 존재하지 않을 경우 표시되는 설명 텍스트입니다
+  ///
+  /// In en, this message translates to:
+  /// **'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.'**
+  String get commonErrorPageDescription;
+
+  /// 에러 페이지에서 도움이 필요할 때 표시되는 텍스트입니다
+  ///
+  /// In en, this message translates to:
+  /// **'Need help?'**
+  String get commonErrorPageHelp;
 }
 
 class _AppLocalizationsDelegate

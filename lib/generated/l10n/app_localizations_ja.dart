@@ -9,8 +9,18 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'ソウルーション';
+  String get commonButtonGoHome => 'Go Home';
 
   @override
-  String get appDescription => 'Flutter_boilerplateでアプリを構築しましょう';
+  String get commonButtonGoBack => 'Go Back';
+
+  @override
+  String get commonErrorPageNotFound => 'Page Not Found';
+
+  @override
+  String get commonErrorPageDescription =>
+      'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.';
+
+  @override
+  String get commonErrorPageHelp => 'Need help?';
 }
