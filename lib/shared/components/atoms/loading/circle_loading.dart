@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CircleLoading extends StatelessWidget {
@@ -17,7 +18,7 @@ class CircleLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     return Center(
-      child: Platform.isIOS
+      child: !kIsWeb && defaultTargetPlatform == TargetPlatform.iOS
           ? CupertinoActivityIndicator(radius: w * 0.05, color: color)
           : CircularProgressIndicator(color: color),
     );
