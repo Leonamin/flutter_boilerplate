@@ -8,74 +8,79 @@ import 'text_field_size.dart';
 class AppTextField extends StatefulWidget {
   /// 텍스트 필드 스타일 variant
   final TextFieldVariant variant;
-  
+
   /// 텍스트 필드 색상
   final TextFieldColor color;
-  
+
   /// 텍스트 필드 크기
   final TextFieldSize size;
-  
+
   /// 텍스트 컨트롤러
   final TextEditingController? controller;
-  
+
   /// 라벨 텍스트
   final String? labelText;
-  
+
   /// 힌트 텍스트
   final String? hintText;
-  
-  
+
   /// 에러 텍스트
   final String? errorText;
-  
+
   /// 좌측 아이콘
   final Widget? prefixIcon;
-  
+
   /// 우측 아이콘
   final Widget? suffixIcon;
-  
+
   /// 좌측 아이콘 버튼 콜백
   final VoidCallback? onPrefixIconPressed;
-  
+
   /// 우측 아이콘 버튼 콜백
   final VoidCallback? onSuffixIconPressed;
-  
+
   /// 텍스트 입력 타입
   final TextInputType? keyboardType;
-  
+
   /// 텍스트 입력 액션
   final TextInputAction? textInputAction;
-  
+
   /// 비밀번호 필드 여부
   final bool obscureText;
-  
+
   /// 활성화 여부
   final bool enabled;
-  
+
   /// 읽기 전용 여부
   final bool readOnly;
-  
+
   /// 최대 라인 수
   final int? maxLines;
-  
+
   /// 최소 라인 수
   final int? minLines;
-  
+
   /// 최대 길이
   final int? maxLength;
-  
+
   /// 입력 포맷터
   final List<TextInputFormatter>? inputFormatters;
-  
+
   /// 텍스트 변경 콜백
   final ValueChanged<String>? onChanged;
-  
+
   /// 제출 콜백
+  /// (Web) Enter 키를 눌렀을 때 호출안됨
   final ValueChanged<String>? onSubmitted;
-  
+
+  /// 텍스트 입력 완료 콜백
+  /// (Web) Enter 키를 눌렀을 때 호출
+  /// (Mobile) 텍스트 입력 완료 버튼을 눌렀을 때 호출
+  final VoidCallback? onEditingComplete;
+
   /// 포커스 노드
   final FocusNode? focusNode;
-  
+
   /// 자동 포커스
   final bool autofocus;
 
@@ -103,6 +108,7 @@ class AppTextField extends StatefulWidget {
     this.inputFormatters,
     this.onChanged,
     this.onSubmitted,
+    this.onEditingComplete,
     this.focusNode,
     this.autofocus = false,
   });
@@ -151,13 +157,11 @@ class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = widget.color.getColorScheme(context);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildTextField(colorScheme),
-      ],
+      children: [_buildTextField(colorScheme)],
     );
   }
 
@@ -182,11 +186,9 @@ class _AppTextFieldState extends State<AppTextField> {
       inputFormatters: widget.inputFormatters,
       onChanged: widget.onChanged,
       onSubmitted: widget.onSubmitted,
+      onEditingComplete: widget.onEditingComplete,
       autofocus: widget.autofocus,
-      style: TextStyle(
-        fontSize: widget.size.fontSize,
-        color: currentTextColor,
-      ),
+      style: TextStyle(fontSize: widget.size.fontSize, color: currentTextColor),
       decoration: InputDecoration(
         labelText: widget.labelText,
         hintText: widget.hintText,
@@ -252,7 +254,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
   Widget? _buildPrefixIcon(Color iconColor) {
     if (widget.prefixIcon == null) return null;
-    
+
     if (widget.onPrefixIconPressed != null) {
       return IconButton(
         icon: widget.prefixIcon!,
@@ -262,19 +264,16 @@ class _AppTextFieldState extends State<AppTextField> {
         splashRadius: widget.size.iconSize * 0.75,
       );
     }
-    
+
     return IconTheme(
-      data: IconThemeData(
-        color: iconColor,
-        size: widget.size.iconSize,
-      ),
+      data: IconThemeData(color: iconColor, size: widget.size.iconSize),
       child: widget.prefixIcon!,
     );
   }
 
   Widget? _buildSuffixIcon(Color iconColor) {
     if (widget.suffixIcon == null) return null;
-    
+
     if (widget.onSuffixIconPressed != null) {
       return IconButton(
         icon: widget.suffixIcon!,
@@ -284,16 +283,12 @@ class _AppTextFieldState extends State<AppTextField> {
         splashRadius: widget.size.iconSize * 0.75,
       );
     }
-    
+
     return IconTheme(
-      data: IconThemeData(
-        color: iconColor,
-        size: widget.size.iconSize,
-      ),
+      data: IconThemeData(color: iconColor, size: widget.size.iconSize),
       child: widget.suffixIcon!,
     );
   }
-
 
   Color _getCurrentBorderColor(TextFieldColorScheme colorScheme) {
     if (!widget.enabled) return colorScheme.disabledBorderColor;
