@@ -9,12 +9,14 @@ class ProgressWrap extends StatelessWidget {
   final Widget child;
   final BaseViewModel controller;
   final Color? backgroundColor;
+  final WidgetBuilder? loadingWidget;
 
   const ProgressWrap({
     super.key,
     required this.controller,
     required this.child,
     this.backgroundColor,
+    this.loadingWidget,
   });
 
   @override
@@ -26,16 +28,17 @@ class ProgressWrap extends StatelessWidget {
         children: [
           child,
           if (controller.isOnProgress.value)
-            Container(
-              width: w,
-              height: h,
-              decoration: BoxDecoration(
-                color:
-                    backgroundColor ??
-                    context.colors.backgroundPrimary.withValues(alpha: 0.5),
-              ),
-              child: CircleLoading(color: context.colors.textPrimary),
-            ),
+            loadingWidget?.call(context) ??
+                Container(
+                  width: w,
+                  height: h,
+                  decoration: BoxDecoration(
+                    color:
+                        backgroundColor ??
+                        context.colors.backgroundPrimary.withValues(alpha: 0.5),
+                  ),
+                  child: CircleLoading(color: context.colors.textPrimary),
+                ),
         ],
       ),
     );
