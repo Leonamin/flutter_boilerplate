@@ -17,7 +17,7 @@ class DialogUtil {
   /// [onCancel] - 취소 버튼 콜백
   /// [barrierDismissible] - 외부 터치로 닫기 가능 여부
   /// 
-  /// Returns: Future<T?> - 다이얼로그 결과
+  /// Returns: Future&lt;T?> - 다이얼로그 결과
   static Future<T?> show<T>({
     required BuildContext context,
     required String title,

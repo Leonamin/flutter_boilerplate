@@ -18,7 +18,7 @@ class BottomSheetUtil {
   /// [isDismissible] - 외부 터치로 닫기 가능 여부
   /// [enableDrag] - 드래그로 닫기 가능 여부
   /// 
-  /// Returns: Future<T?> - 바텀시트 결과
+  /// Returns: Future&lt;T?> - 바텀시트 결과
   static Future<T?> show<T>({
     required BuildContext context,
     String? title,

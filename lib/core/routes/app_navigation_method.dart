@@ -6,12 +6,16 @@ import 'package:go_router/go_router.dart';
 enum AppNavigationMethod {
   /// 현재 스택을 모두 제거하고 새로운 라우트로 이동
   go,
+
   /// 현재 스택 위에 새로운 라우트를 추가
   push,
+
   /// 현재 라우트를 새로운 라우트로 교체
   replacement,
+
   /// 현재 스택을 모두 제거하고 새로운 라우트로 이동 (pushReplacementNamed 사용)
   pushReplacement,
+
   /// 이전 라우트로 돌아가기
   pop,
 }
@@ -22,34 +26,26 @@ class AppNavigationResult<T> {
   final T? data;
   final String? error;
 
-  const AppNavigationResult({
-    required this.success,
-    this.data,
-    this.error,
-  });
+  const AppNavigationResult({required this.success, this.data, this.error});
 
-  factory AppNavigationResult.success([T? data]) => AppNavigationResult(
-        success: true,
-        data: data,
-      );
+  factory AppNavigationResult.success([T? data]) =>
+      AppNavigationResult(success: true, data: data);
 
-  factory AppNavigationResult.error(String error) => AppNavigationResult(
-        success: false,
-        error: error,
-      );
+  factory AppNavigationResult.error(String error) =>
+      AppNavigationResult(success: false, error: error);
 }
 
 /// AppNavigationMethod에 대한 확장 메서드
 extension AppNavigationMethodExtension on AppNavigationMethod {
   /// 타입 안전한 네비게이션을 수행합니다
-  /// 
+  ///
   /// [context] - BuildContext
   /// [name] - 라우트 이름
   /// [pathParameters] - 경로 파라미터
   /// [queryParameters] - 쿼리 파라미터
   /// [extra] - 추가 데이터 (타입 안전성을 위해 제네릭 사용)
-  /// 
-  /// Returns: AppNavigationResult<T> - 네비게이션 결과
+  ///
+  /// Returns: AppNavigationResult&lt;T> - 네비게이션 결과
   Future<AppNavigationResult<T>> navigateTo<T>({
     required BuildContext context,
     required String name,

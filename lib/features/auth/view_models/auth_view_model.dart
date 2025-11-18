@@ -22,11 +22,6 @@ class AuthViewModel extends BaseViewModel {
   final RxString nameError = ''.obs;
 
   @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
@@ -59,11 +54,13 @@ class AuthViewModel extends BaseViewModel {
     );
 
     if (result != null && result.isSuccess) {
-      showSuccessToast(context, '로그인되었습니다.');
-      // TODO: 메인 화면으로 이동
-      // Get.offAllNamed('/home');
+      if (context.mounted) {
+        showSuccessToast(context, '로그인되었습니다.');
+      }
     } else if (result != null && result.message != null) {
-      showErrorToast(context, result.message!);
+      if (context.mounted) {
+        showErrorToast(context, result.message!);
+      }
     }
   }
 
@@ -82,27 +79,31 @@ class AuthViewModel extends BaseViewModel {
     );
 
     if (result != null && result.isSuccess) {
-      showSuccessToast(context, '회원가입이 완료되었습니다.');
+      if (context.mounted) {
+        showSuccessToast(context, '회원가입이 완료되었습니다.');
+      }
       // 로그인 모드로 전환
       isLoginMode.value = true;
       _clearForm();
     } else if (result != null && result.message != null) {
-      showErrorToast(context, result.message!);
+      if (context.mounted) {
+        showErrorToast(context, result.message!);
+      }
     }
   }
 
   /// 로그아웃 처리
   Future<void> logout(BuildContext context) async {
-    final success = await executeWithProgress(
-      context,
-      () => _authService.logout(),
-      errorMessage: '로그아웃에 실패했습니다.',
-    );
+    final success =
+        await executeWithProgress(
+          context,
+          () => _authService.logout(),
+          errorMessage: '로그아웃에 실패했습니다.',
+        ) ??
+        false;
 
-    if (success == true) {
+    if (success && context.mounted) {
       showSuccessToast(context, '로그아웃되었습니다.');
-      // TODO: 로그인 화면으로 이동
-      // Get.offAllNamed('/login');
     }
   }
 
