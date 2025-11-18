@@ -1,3 +1,4 @@
+import 'package:flutter_boilerplate/domain/services/common/fgbg_service.dart';
 import 'package:get/get.dart';
 import 'package:flutter_boilerplate/core/utils/logger.dart';
 import 'package:flutter_boilerplate/data/repositories/auth/auth_repository.dart';
@@ -32,39 +33,45 @@ class DependencyInjection {
   /// Repository 의존성 등록
   static Future<void> _initRepositories() async {
     Logger.info('Registering repositories...');
-    
+
     // AuthRepository 등록
     Get.put<AuthRepository>(AuthRepositoryImpl(), permanent: true);
-    
+
     // 추가 Repository들은 필요에 따라 등록
     // Get.put<BookingRepository>(BookingRepositoryImpl(), permanent: true);
     // Get.put<HomeRepository>(HomeRepositoryImpl(), permanent: true);
-    
+
     Logger.info('Repositories registered');
   }
 
   /// Service 의존성 등록
   static Future<void> _initServices() async {
     Logger.info('Registering services...');
-    
+
     // AuthService 등록
-    Get.put<AuthService>(AuthService(Get.find<AuthRepository>()), permanent: true);
-    
+    Get.put<AuthService>(
+      AuthService(Get.find<AuthRepository>()),
+      permanent: true,
+    );
+
+    // FGBGService 등록
+    Get.put<FGBGService>(FGBGService(), permanent: true);
+
     // 추가 Service들은 필요에 따라 등록
     // Get.put<BookingService>(BookingService(Get.find<BookingRepository>()), permanent: true);
     // Get.put<HomeService>(HomeService(Get.find<HomeRepository>()), permanent: true);
-    
+
     Logger.info('Services registered');
   }
 
   /// Helper 의존성 등록
   static Future<void> _initHelpers() async {
     Logger.info('Registering helpers...');
-    
+
     // 예시: NetworkHelper, StorageHelper 등 등록
     // Get.put<NetworkHelper>(NetworkHelper(), permanent: true);
     // Get.put<StorageHelper>(StorageHelper(), permanent: true);
-    
+
     Logger.info('Helpers registered');
   }
 

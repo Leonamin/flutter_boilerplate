@@ -6,6 +6,9 @@ import 'package:flutter_boilerplate/core/routes/app_router.dart';
 import 'package:flutter_boilerplate/core/theme/app_colors.dart';
 import 'package:flutter_boilerplate/core/theme/app_theme_extension.dart';
 import 'package:flutter_boilerplate/core/utils/logger.dart';
+import 'package:flutter_boilerplate/domain/services/common/fgbg_service.dart';
+import 'package:flutter_fgbg/flutter_fgbg.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 void main() async {
@@ -17,7 +20,16 @@ void main() async {
 
       final appRouter = initAppRouter();
 
-      runApp(MyApp(routerConfig: appRouter));
+      final FGBGService fgBgService = Get.find();
+
+      runApp(
+        FGBGNotifier(
+          onEvent: (event) {
+            fgBgService.onChangeFGBG(event);
+          },
+          child: MyApp(routerConfig: appRouter),
+        ),
+      );
     },
     (error, stack) {
       Logger.error('Error: $error', tag: 'main');
