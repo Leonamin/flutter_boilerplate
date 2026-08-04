@@ -100,17 +100,89 @@ abstract class AppLocalizations {
     Locale('ko'),
   ];
 
+  /// No description provided for @appTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Flutter Boilerplate'**
+  String get appTitle;
+
+  /// No description provided for @startupLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your app…'**
+  String get startupLoading;
+
+  /// No description provided for @startupError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t restore your session.'**
+  String get startupError;
+
+  /// No description provided for @commonRetryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get commonRetryAction;
+
+  /// No description provided for @authLoginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get authLoginTitle;
+
+  /// No description provided for @authEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get authEmailLabel;
+
+  /// No description provided for @authPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPasswordLabel;
+
+  /// No description provided for @authSignInAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get authSignInAction;
+
+  /// No description provided for @authSignOutAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get authSignOutAction;
+
+  /// No description provided for @authInvalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email and password.'**
+  String get authInvalidCredentials;
+
+  /// No description provided for @commonUnexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get commonUnexpectedError;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeTitle;
+
+  /// No description provided for @homeSignedInMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You are signed in.'**
+  String get homeSignedInMessage;
+
   /// 홈으로 이동하는 버튼의 텍스트입니다
   ///
   /// In en, this message translates to:
   /// **'Go Home'**
   String get commonButtonGoHome;
-
-  /// 이전 페이지로 이동하는 버튼의 텍스트입니다
-  ///
-  /// In en, this message translates to:
-  /// **'Go Back'**
-  String get commonButtonGoBack;
 
   /// 해당 경로에 페이지가 존재하지 않을 경우 표시되는 타이틀 텍스트입니다
   ///
@@ -123,18 +195,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.'**
   String get commonErrorPageDescription;
-
-  /// 에러 페이지에서 도움이 필요할 때 표시되는 텍스트입니다
-  ///
-  /// In en, this message translates to:
-  /// **'Need help?'**
-  String get commonErrorPageHelp;
-
-  /// 이미지 로딩 실패 메시지입니다.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to load image'**
-  String get imageGalleryLoadFailed;
 }
 
 class _AppLocalizationsDelegate
