@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [develop, main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.44.7
+          channel: stable
+          cache: true
+
+      - name: Resolve dependencies
+        run: flutter pub get
+
+      - name: Generate sources
+        run: |
+          flutter gen-l10n
+          dart run build_runner build
+
+      - name: Verify generated sources
+        run: git diff --exit-code
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Reject GetX regressions
+        run: |
+          if rg -n "package:get/|^[[:space:]]*get:" lib test pubspec.yaml; then
+            echo "GetX is not allowed in this boilerplate."
+            exit 1
+          fi
+
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+
+      - name: Test
+        run: flutter test
+
+      - name: Verify project creation
+        run: |
+          destination="$(mktemp -d)/ci_sample"
+          ./create_project.sh com.example.ci_sample "$destination" "CI Sample"
+
+      - name: Build web
+        run: flutter build web --release
