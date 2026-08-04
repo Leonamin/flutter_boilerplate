@@ -1,13 +1,22 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2025-09-03T16:39:48+09:00",
+  "@@last_modified": "2026-08-04T00:00:00+09:00",
+  "appTitle": "Flutter Boilerplate",
+  "startupLoading": "Preparing your app…",
+  "startupError": "We couldn't restore your session.",
+  "commonRetryAction": "Try again",
+  "authLoginTitle": "Welcome back",
+  "authEmailLabel": "Email",
+  "authPasswordLabel": "Password",
+  "authSignInAction": "Sign in",
+  "authSignOutAction": "Sign out",
+  "authInvalidCredentials": "Check your email and password.",
+  "commonUnexpectedError": "Something went wrong. Please try again.",
+  "homeTitle": "Home",
+  "homeSignedInMessage": "You are signed in.",
   "commonButtonGoHome": "Go Home",
   "@commonButtonGoHome": {
     "description": "홈으로 이동하는 버튼의 텍스트입니다"
-  },
-  "commonButtonGoBack": "Go Back",
-  "@commonButtonGoBack": {
-    "description": "이전 페이지로 이동하는 버튼의 텍스트입니다"
   },
   "commonErrorPageNotFound": "Page Not Found",
   "@commonErrorPageNotFound": {
@@ -16,13 +25,5 @@
   "commonErrorPageDescription": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
   "@commonErrorPageDescription": {
     "description": "해당 경로에 페이지가 존재하지 않을 경우 표시되는 설명 텍스트입니다"
-  },
-  "commonErrorPageHelp": "Need help?",
-  "@commonErrorPageHelp": {
-    "description": "에러 페이지에서 도움이 필요할 때 표시되는 텍스트입니다"
-  },
-  "imageGalleryLoadFailed": "Failed to load image",
-  "@imageGalleryLoadFailed": {
-    "description": "이미지 로딩 실패 메시지입니다."
   }
 }

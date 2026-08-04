@@ -9,21 +9,50 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get commonButtonGoHome => 'Go Home';
+  String get appTitle => 'Flutter ボイラープレート';
 
   @override
-  String get commonButtonGoBack => 'Go Back';
+  String get startupLoading => 'アプリを準備しています…';
 
   @override
-  String get commonErrorPageNotFound => 'Page Not Found';
+  String get startupError => 'セッションを復元できませんでした。';
 
   @override
-  String get commonErrorPageDescription =>
-      'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.';
+  String get commonRetryAction => 'もう一度試す';
 
   @override
-  String get commonErrorPageHelp => 'Need help?';
+  String get authLoginTitle => 'おかえりなさい';
 
   @override
-  String get imageGalleryLoadFailed => 'Failed to load image';
+  String get authEmailLabel => 'メールアドレス';
+
+  @override
+  String get authPasswordLabel => 'パスワード';
+
+  @override
+  String get authSignInAction => 'ログイン';
+
+  @override
+  String get authSignOutAction => 'ログアウト';
+
+  @override
+  String get authInvalidCredentials => 'メールアドレスとパスワードを確認してください。';
+
+  @override
+  String get commonUnexpectedError => '問題が発生しました。もう一度お試しください。';
+
+  @override
+  String get homeTitle => 'ホーム';
+
+  @override
+  String get homeSignedInMessage => 'ログインしています。';
+
+  @override
+  String get commonButtonGoHome => 'ホームへ';
+
+  @override
+  String get commonErrorPageNotFound => 'ページが見つかりません';
+
+  @override
+  String get commonErrorPageDescription => 'お探しのページは削除されたか、アドレスが変更されています。';
 }
