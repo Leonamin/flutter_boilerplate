@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/features/auth/application/providers/auth_session_provider.dart';
+import 'package:flutter_boilerplate/generated/l10n/app_localizations.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_button.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_loading_indicator.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../features/auth/application/providers/auth_session_provider.dart';
-import '../../generated/l10n/app_localizations.dart';
-import '../../shared/ui/components/app_button.dart';
-import '../../shared/ui/components/app_loading_indicator.dart';
-import '../../shared/ui/components/app_scaffold.dart';
 
 class StartupPage extends ConsumerWidget {
   const StartupPage({super.key});

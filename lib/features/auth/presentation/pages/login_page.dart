@@ -1,13 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_boilerplate/features/auth/application/controllers/sign_in_controller.dart';
+import 'package:flutter_boilerplate/features/auth/domain/failures/auth_failure.dart';
+import 'package:flutter_boilerplate/generated/l10n/app_localizations.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_button.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_scaffold.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../generated/l10n/app_localizations.dart';
-import '../../../../shared/ui/components/app_button.dart';
-import '../../../../shared/ui/components/app_scaffold.dart';
-import '../../../../shared/ui/components/app_text_field.dart';
-import '../../application/controllers/sign_in_controller.dart';
-import '../../domain/failures/auth_failure.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -127,12 +128,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     }
 
     TextInput.finishAutofillContext();
-    ref
-        .read(signInControllerProvider.notifier)
-        .signIn(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
+    unawaited(
+      ref
+          .read(signInControllerProvider.notifier)
+          .signIn(
+            email: _emailController.text,
+            password: _passwordController.text,
+          ),
+    );
   }
 
   String? _validateEmail(AppLocalizations localizations, String? value) {

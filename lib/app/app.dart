@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app/router/app_router.dart';
+import 'package:flutter_boilerplate/generated/l10n/app_localizations.dart';
+import 'package:flutter_boilerplate/shared/ui/foundations/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../generated/l10n/app_localizations.dart';
-import '../shared/ui/foundations/app_theme.dart';
-import 'router/app_router.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});

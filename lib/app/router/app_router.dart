@@ -1,11 +1,10 @@
+import 'package:flutter_boilerplate/app/router/app_routes.dart';
+import 'package:flutter_boilerplate/app/router/not_found_page.dart';
+import 'package:flutter_boilerplate/app/router/router_refresh_listenable.dart';
+import 'package:flutter_boilerplate/features/auth/application/providers/auth_session_provider.dart';
+import 'package:flutter_boilerplate/features/auth/domain/entities/auth_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../features/auth/application/providers/auth_session_provider.dart';
-import '../../features/auth/domain/entities/auth_session.dart';
-import 'app_routes.dart';
-import 'not_found_page.dart';
-import 'router_refresh_listenable.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refreshListenable = RouterRefreshListenable();

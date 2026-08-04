@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app/app.dart';
+import 'package:flutter_boilerplate/app/bootstrap_bindings.dart';
+import 'package:flutter_boilerplate/app/providers/app_config_provider.dart';
+import 'package:flutter_boilerplate/core/config/app_config.dart';
+import 'package:flutter_boilerplate/core/observability/app_logger.dart';
+import 'package:flutter_boilerplate/features/auth/application/providers/auth_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../core/config/app_config.dart';
-import '../core/observability/app_logger.dart';
-import '../features/auth/application/providers/auth_repository_provider.dart';
-import 'app.dart';
-import 'bootstrap_bindings.dart';
-import 'providers/app_config_provider.dart';
 
 void bootstrap() {
   runZonedGuarded(() {

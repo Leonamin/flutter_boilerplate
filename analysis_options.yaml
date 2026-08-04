@@ -9,6 +9,7 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   errors:
+    always_use_package_imports: error
     invalid_annotation_target: ignore
     missing_required_param: error
     missing_return: error
@@ -16,8 +17,19 @@ analyzer:
 linter:
   rules:
     always_declare_return_types: true
+    always_use_package_imports: true
     avoid_dynamic_calls: true
+    avoid_positional_boolean_parameters: true
     avoid_print: true
+    avoid_void_async: true
+    discarded_futures: true
     directives_ordering: true
+    only_throw_errors: true
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_final_locals: true
     prefer_single_quotes: true
     unawaited_futures: true
+    unnecessary_ignore: true
+    unnecessary_lambdas: true
