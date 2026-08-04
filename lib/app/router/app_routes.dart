@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app/router/startup_page.dart';
+import 'package:flutter_boilerplate/features/auth/presentation/pages/home_page.dart';
+import 'package:flutter_boilerplate/features/auth/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../features/auth/presentation/pages/home_page.dart';
-import '../../features/auth/presentation/pages/login_page.dart';
-import 'startup_page.dart';
 
 part 'app_routes.g.dart';
 

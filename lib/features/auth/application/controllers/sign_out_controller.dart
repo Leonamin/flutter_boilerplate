@@ -1,8 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_boilerplate/features/auth/application/providers/auth_repository_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../providers/auth_repository_provider.dart';
 
 final signOutControllerProvider =
     AsyncNotifierProvider.autoDispose<SignOutController, void>(

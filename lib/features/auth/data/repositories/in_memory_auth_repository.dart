@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import '../../domain/entities/auth_session.dart';
-import '../../domain/entities/auth_user.dart';
-import '../../domain/failures/auth_failure.dart';
-import '../../domain/repositories/auth_repository.dart';
+import 'package:flutter_boilerplate/features/auth/domain/entities/auth_session.dart';
+import 'package:flutter_boilerplate/features/auth/domain/entities/auth_user.dart';
+import 'package:flutter_boilerplate/features/auth/domain/failures/auth_failure.dart';
+import 'package:flutter_boilerplate/features/auth/domain/repositories/auth_repository.dart';
 
 /// A deterministic authentication implementation for a newly created app.
 ///
@@ -65,7 +65,7 @@ final class InMemoryAuthRepository implements AuthRepository {
     }
 
     _isDisposed = true;
-    _sessionController.close();
+    unawaited(_sessionController.close());
   }
 
   void _validateCredentials({required String email, required String password}) {

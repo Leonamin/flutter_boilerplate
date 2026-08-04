@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../../generated/l10n/app_localizations.dart';
-import '../../shared/ui/components/app_button.dart';
-import '../../shared/ui/components/app_scaffold.dart';
-import 'app_routes.dart';
+import 'package:flutter_boilerplate/app/router/app_routes.dart';
+import 'package:flutter_boilerplate/generated/l10n/app_localizations.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_button.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_scaffold.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({required this.uri, super.key});

@@ -1,4 +1,4 @@
-import '../entities/auth_session.dart';
+import 'package:flutter_boilerplate/features/auth/domain/entities/auth_session.dart';
 
 abstract interface class AuthRepository {
   AuthSession get currentSession;

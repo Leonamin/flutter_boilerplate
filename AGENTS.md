@@ -21,6 +21,8 @@
 
 ## 생성 코드
 
+- `lib` 내부 라이브러리 간 import는 현재 패키지의 `package:` URI를 사용한다.
+- 상대 경로는 `part`와 `part of` 지시문에만 사용한다.
 - `*.freezed.dart`, `*.g.dart`, `lib/generated/l10n/**`는 직접 수정하지 않는다.
 - 통합 작업자만 `fvm dart run build_runner build`와 `fvm flutter gen-l10n`을 실행한다.
 - 생성 코드는 저장소에 커밋해 checkout 직후에도 분석 가능한 상태를 유지한다.

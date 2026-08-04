@@ -14,7 +14,7 @@ void main() {
     test('sends protected locations to startup while session loads', () {
       expect(
         resolveRedirect(const AsyncLoading(), Uri.parse('/orders?tab=open')),
-        StartupRoute(from: '/orders?tab=open').location,
+        const StartupRoute(from: '/orders?tab=open').location,
       );
       expect(
         resolveRedirect(const AsyncLoading(), Uri.parse(StartupRoute.path)),

@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter_boilerplate/features/auth/application/providers/auth_repository_provider.dart';
+import 'package:flutter_boilerplate/features/auth/domain/entities/auth_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../domain/entities/auth_session.dart';
-import 'auth_repository_provider.dart';
 
 final authSessionProvider =
     AsyncNotifierProvider<AuthSessionController, AuthSession>(

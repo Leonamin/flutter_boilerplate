@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/features/auth/application/controllers/sign_out_controller.dart';
+import 'package:flutter_boilerplate/features/auth/application/providers/auth_session_provider.dart';
+import 'package:flutter_boilerplate/features/auth/domain/entities/auth_session.dart';
+import 'package:flutter_boilerplate/generated/l10n/app_localizations.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_button.dart';
+import 'package:flutter_boilerplate/shared/ui/components/app_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../generated/l10n/app_localizations.dart';
-import '../../../../shared/ui/components/app_button.dart';
-import '../../../../shared/ui/components/app_scaffold.dart';
-import '../../application/controllers/sign_out_controller.dart';
-import '../../application/providers/auth_session_provider.dart';
-import '../../domain/entities/auth_session.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
